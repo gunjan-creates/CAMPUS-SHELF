@@ -3,54 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus Shelf </title>
+    <title>Campus Shelf - Digital Library</title>
     <link rel="icon" type="image/png" href="campus shef.png">
     <link rel="stylesheet" href="Campus Shelf.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Navigation Header -->
     <header>
-        <nav>
-            <img src="campus shef.png" class="logo">
-
-                    <ul class="nav-links">
-                        <a href="/" class="Your Dashboard">Your Dashboard</a>
-                        <a href="/" class="about">About</a>
-                        <a href="/" class="home">Home</a>
-                        <a href="/" class="contact">contact</a>
-                        <a href="/" class="library">library's</a>
-                    </ul>
-
-
-        </nav>
-
-    </header>
-        <p class="wellcome">WELLCOME TO Campus Shelf STUDENT !</p>
-        <p class="slogen">Campus Shelf : Your Digital Haven for Every Page</p>
-    <hr>
-    <main>
-        <section>
-            <div class="featured-books">BEST BOOK OF THE WEEK !</div>
-            <div class="books">
-                <div>
-
-                        RICH DAD POOR DAD
-
+        <nav class="navbar">
+            <div class="nav-brand">
+                <img src="campus shef.png" class="logo" alt="Campus Shelf Logo">
+                <div class="brand-text">
+                    <h2>Campus Shelf</h2>
+                    <p>Your Digital Haven</p>
                 </div>
-                <div>
-                    THE THEORY OF EVERYTHING
+            </div>
+            
+            <div class="nav-search">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search books, authors, categories...">
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#home" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#library"><i class="fas fa-book"></i> Library</a></li>
+                <li><a href="#dashboard"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+
+            <div class="nav-user">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </div>
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </div>
+            
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to Campus Shelf!</h1>
+            <p class="hero-subtitle">Discover thousands of books, all in one place</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <i class="fas fa-book-open"></i>
+                    <h3>10,000+</h3>
+                    <p>Books</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <h3>5,000+</h3>
+                    <p>Students</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-download"></i>
+                    <h3>50,000+</h3>
+                    <p>Downloads</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Filters -->
+    <section class="filters-section">
+        <div class="filter-chips">
+            <button class="chip active" data-category="all">All Books</button>
+            <button class="chip" data-category="fiction">Fiction</button>
+            <button class="chip" data-category="science">Science</button>
+            <button class="chip" data-category="technology">Technology</button>
+            <button class="chip" data-category="business">Business</button>
+            <button class="chip" data-category="self-help">Self Help</button>
+        </div>
+    </section>
+
+    <main>
+        <!-- Featured Books Section -->
+        <section class="section-container">
+            <div class="section-header">
+                <h2><i class="fas fa-star"></i> Best Books of the Week</h2>
+                <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="books-grid">
+                <div class="book-card" data-category="business">
+                    <div class="book-badge">Trending</div>
+                    <div class="book-image">
+                        <div class="book-cover" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="book-actions">
+                            <button class="action-btn" title="Read Now"><i class="fas fa-book-reader"></i></button>
+                            <button class="action-btn" title="Add to Library"><i class="fas fa-bookmark"></i></button>
+                            <button class="action-btn" title="Download"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <h3>Rich Dad Poor Dad</h3>
+                        <p class="author"><i class="fas fa-user"></i> Robert Kiyosaki</p>
+                        <div class="book-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>4.5</span>
+                            </div>
+                            <span class="pages"><i class="fas fa-file-alt"></i> 336 pages</span>
+                        </div>
+                        <div class="book-tags">
+                            <span class="tag">Finance</span>
+                            <span class="tag">Business</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-card" data-category="science">
+                    <div class="book-badge popular">Popular</div>
+                    <div class="book-image">
+                        <div class="book-cover" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <div class="book-actions">
+                            <button class="action-btn" title="Read Now"><i class="fas fa-book-reader"></i></button>
+                            <button class="action-btn" title="Add to Library"><i class="fas fa-bookmark"></i></button>
+                            <button class="action-btn" title="Download"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <h3>The Theory of Everything</h3>
+                        <p class="author"><i class="fas fa-user"></i> Stephen Hawking</p>
+                        <div class="book-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>5.0</span>
+                            </div>
+                            <span class="pages"><i class="fas fa-file-alt"></i> 132 pages</span>
+                        </div>
+                        <div class="book-tags">
+                            <span class="tag">Physics</span>
+                            <span class="tag">Cosmology</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-card" data-category="fiction">
+                    <div class="book-badge new">New</div>
+                    <div class="book-image">
+                        <div class="book-cover" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <i class="fas fa-feather-alt"></i>
+                        </div>
+                        <div class="book-actions">
+                            <button class="action-btn" title="Read Now"><i class="fas fa-book-reader"></i></button>
+                            <button class="action-btn" title="Add to Library"><i class="fas fa-bookmark"></i></button>
+                            <button class="action-btn" title="Download"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <h3>The Alchemist</h3>
+                        <p class="author"><i class="fas fa-user"></i> Paulo Coelho</p>
+                        <div class="book-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>4.0</span>
+                            </div>
+                            <span class="pages"><i class="fas fa-file-alt"></i> 208 pages</span>
+                        </div>
+                        <div class="book-tags">
+                            <span class="tag">Fiction</span>
+                            <span class="tag">Adventure</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-card" data-category="technology">
+                    <div class="book-badge">Featured</div>
+                    <div class="book-image">
+                        <div class="book-cover" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="book-actions">
+                            <button class="action-btn" title="Read Now"><i class="fas fa-book-reader"></i></button>
+                            <button class="action-btn" title="Add to Library"><i class="fas fa-bookmark"></i></button>
+                            <button class="action-btn" title="Download"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <h3>Clean Code</h3>
+                        <p class="author"><i class="fas fa-user"></i> Robert C. Martin</p>
+                        <div class="book-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>4.7</span>
+                            </div>
+                            <span class="pages"><i class="fas fa-file-alt"></i> 464 pages</span>
+                        </div>
+                        <div class="book-tags">
+                            <span class="tag">Programming</span>
+                            <span class="tag">Software</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-        <section>
-            <div class="wrt">OUR TOP WRITERS !</div>
-            <div class="Authors">
-                <div> GUNJAN GHANGARE</div>
-                <div> ELBERT EINSTINE</div>
+
+        <!-- Top Authors Section -->
+        <section class="section-container">
+            <div class="section-header">
+                <h2><i class="fas fa-pen-fancy"></i> Featured Authors</h2>
+                <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="authors-grid">
+                <div class="author-card">
+                    <div class="author-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Gunjan Ghangare</h3>
+                    <p class="author-role">Software Developer & Author</p>
+                    <div class="author-stats">
+                        <div>
+                            <strong>15</strong>
+                            <span>Books</span>
+                        </div>
+                        <div>
+                            <strong>12K</strong>
+                            <span>Readers</span>
+                        </div>
+                    </div>
+                    <button class="follow-btn"><i class="fas fa-plus"></i> Follow</button>
+                </div>
+
+                <div class="author-card">
+                    <div class="author-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Stephen Hawking</h3>
+                    <p class="author-role">Theoretical Physicist</p>
+                    <div class="author-stats">
+                        <div>
+                            <strong>8</strong>
+                            <span>Books</span>
+                        </div>
+                        <div>
+                            <strong>50K</strong>
+                            <span>Readers</span>
+                        </div>
+                    </div>
+                    <button class="follow-btn"><i class="fas fa-plus"></i> Follow</button>
+                </div>
+
+                <div class="author-card">
+                    <div class="author-avatar" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Robert Kiyosaki</h3>
+                    <p class="author-role">Business & Finance Expert</p>
+                    <div class="author-stats">
+                        <div>
+                            <strong>27</strong>
+                            <span>Books</span>
+                        </div>
+                        <div>
+                            <strong>85K</strong>
+                            <span>Readers</span>
+                        </div>
+                    </div>
+                    <button class="follow-btn"><i class="fas fa-plus"></i> Follow</button>
+                </div>
+
+                <div class="author-card">
+                    <div class="author-avatar" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Paulo Coelho</h3>
+                    <p class="author-role">Novelist & Lyricist</p>
+                    <div class="author-stats">
+                        <div>
+                            <strong>30</strong>
+                            <span>Books</span>
+                        </div>
+                        <div>
+                            <strong>95K</strong>
+                            <span>Readers</span>
+                        </div>
+                    </div>
+                    <button class="follow-btn"><i class="fas fa-plus"></i> Follow</button>
+                </div>
             </div>
         </section>
     </main>
+
+    <!-- Footer -->
     <footer>
-        <p>copyright &copy; CAMPUS SHELF All Right Reserved The project is in under development</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Campus Shelf</h3>
+                <p>Your digital library for academic excellence</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Browse Books</a></li>
+                    <li><a href="#">Top Authors</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Categories</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Newsletter</h4>
+                <p>Subscribe for updates</p>
+                <div class="newsletter">
+                    <input type="email" placeholder="Your email">
+                    <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Campus Shelf. All Rights Reserved.</p>
+        </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

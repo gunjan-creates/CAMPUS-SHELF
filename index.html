@@ -3,44 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus Shelf Login Page</title>
+    <title>Campus Shelf - Your Digital Library</title>
     <link rel="icon" type="image/png" href="campus shef.png">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <img src="campus shef.png" alt="Campus shelf logo" class="logo">
-    </header>
-    <main>
-        <form action="Campus Shelf.html">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="Username" required>
-
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Password" required>
-
-            <button type="submit">Login</button>
-
-            <div class="form-links">
-                <a href="#" class="forgot-password">Forgot Password?</a>
-                <a href="#" class="register-link">register yourself</a>
+    <div class="animated-background">
+        <div class="floating-shape shape1"></div>
+        <div class="floating-shape shape2"></div>
+        <div class="floating-shape shape3"></div>
+    </div>
+    
+    <div class="login-container">
+        <div class="logo-section">
+            <img src="campus shef.png" alt="Campus Shelf Logo" class="logo">
+            <h1 class="brand-title">Campus Shelf</h1>
+            <p class="brand-subtitle">Your Digital Haven for Every Page</p>
+        </div>
+        
+        <form action="Campus Shelf.html" class="login-form">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" name="username" id="username" placeholder="Username" required>
+                <label for="username">Username</label>
             </div>
 
-            <details>
-                <summary>More login options</summary>
-                <a href="google-login.html">Login with Google</a><br>
-                <a href="github-login.html">Login with GitHub</a><br>
-                <a href="facebook-login.html">Login with Facebook</a>
-            </details>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <label for="password">Password</label>
+                <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+            </div>
 
+            <button type="submit" class="btn-primary">
+                <span>Access Library</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+
+            <div class="form-links">
+                <a href="#" class="forgot-password">
+                    <i class="fas fa-key"></i> Forgot Password?
+                </a>
+                <a href="#" class="register-link">
+                    <i class="fas fa-user-plus"></i> Register Now
+                </a>
+            </div>
+
+            <div class="divider">
+                <span>Or continue with</span>
+            </div>
+
+            <div class="social-login">
+                <button type="button" class="social-btn google">
+                    <i class="fab fa-google"></i>
+                </button>
+                <button type="button" class="social-btn github">
+                    <i class="fab fa-github"></i>
+                </button>
+                <button type="button" class="social-btn facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+            </div>
         </form>
-    </main>
+    </div>
+    
     <footer>
-        <marquee>
-            WELLCOME TO CAMPUS SHELF STUDENT !
-            Notice : Remember This site is only accesable for those who has authorised username and password from the registered college in database
-            ALL the  importaint development is in progress plese wait for the update and do not judge the site
-        </marquee>
+        <div class="footer-content">
+            <p><i class="fas fa-shield-alt"></i> Secure access for authorized students only</p>
+            <p class="copyright">&copy; 2025 Campus Shelf. All rights reserved.</p>
+        </div>
     </footer>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.querySelector('.toggle-password');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Add floating animation on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.login-container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                container.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
 </body>
 </html>
