@@ -678,6 +678,11 @@ html.animations-ready [data-animate="rise"].animated {
         height: auto;
         border-radius: 14px;
     }
+
+    .provider-image img {
+        width: 35%;
+        height: 35%;
+    }
 }
 
 @media (max-width: 420px) {
