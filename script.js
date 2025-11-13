@@ -427,12 +427,18 @@
     }
 
     function openAdminModal() {
-        adminBackdrop?.classList.add('active');
+        if (adminBackdrop) {
+            adminBackdrop.classList.remove('hidden');
+            adminBackdrop.classList.add('active');
+        }
         adminModal?.classList.remove('hidden');
     }
 
     function closeAdminModal() {
-        adminBackdrop?.classList.remove('active');
+        if (adminBackdrop) {
+            adminBackdrop.classList.remove('active');
+            adminBackdrop.classList.add('hidden');
+        }
         adminModal?.classList.add('hidden');
         adminForm.reset();
         clearAlert(adminAlert);
@@ -533,7 +539,10 @@
     }
 
     function escapeHtml(value) {
-        return value.replace(/[&<>'"]/g, char => ({
+        if (value === undefined || value === null) {
+            return '';
+        }
+        return String(value).replace(/[&<>'"]/g, char => ({
             '&': '&amp;',
             '<': '&lt;',
             '>': '&gt;',

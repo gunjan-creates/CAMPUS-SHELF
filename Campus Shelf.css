@@ -433,6 +433,10 @@ header {
     transform: translateY(-2px);
 }
 
+.full-width {
+    width: 100%;
+}
+
 /* Main Content */
 main {
     flex-grow: 1;
