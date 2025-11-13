@@ -3,106 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus Shelf - Your Digital Library</title>
+    <meta name="description" content="Campus Shelf is the secure digital library experience for students and faculty.">
+    <meta name="theme-color" content="#667eea">
+    <title>Campus Shelf - Access Portal</title>
     <link rel="icon" type="image/png" href="campus shef.png">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p4Vd7KpQN6jwxKF1u9IiMaTZGi99ZTSdKCbFf8gDuwZQ+QpimeISFRCGDpa2BkLomqKgJo0vvV3zYx04Ec/4Xg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script src="auth.js" defer></script>
 </head>
 <body>
-    <div class="animated-background">
+    <div class="animated-background" aria-hidden="true">
         <div class="floating-shape shape1"></div>
         <div class="floating-shape shape2"></div>
         <div class="floating-shape shape3"></div>
     </div>
-    
-    <div class="login-container">
-        <div class="logo-section">
-            <img src="campus shef.png" alt="Campus Shelf Logo" class="logo">
-            <h1 class="brand-title">Campus Shelf</h1>
-            <p class="brand-subtitle">Your Digital Haven for Every Page</p>
+
+    <main class="auth-layout">
+        <div class="login-container" data-animate="rise">
+            <div class="logo-section">
+                <img src="campus shef.png" alt="Campus Shelf Logo" class="logo">
+                <h1 class="brand-title">Campus Shelf</h1>
+                <p class="brand-subtitle">Your Digital Haven for Every Page</p>
+            </div>
+
+            <form class="login-form" novalidate>
+                <div class="form-alert hidden" role="status" data-login-alert></div>
+
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="username" id="username" placeholder=" " autocomplete="username" required>
+                    <label for="username">Email or Username</label>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" id="password" placeholder=" " autocomplete="current-password" required>
+                    <label for="password">Password</label>
+                    <button type="button" class="toggle-password" aria-label="Toggle password visibility" data-toggle-password>
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+
+                <button type="submit" class="btn-primary full-width">
+                    <span>Access Library</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+
+                <div class="form-links">
+                    <button type="button" class="link-btn" data-modal-open="forgotModal">
+                        <i class="fas fa-key"></i>
+                        <span>Forgot Password?</span>
+                    </button>
+                    <button type="button" class="link-btn" data-modal-open="registerModal">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Register Now</span>
+                    </button>
+                </div>
+
+                <div class="divider">
+                    <span>Or continue with</span>
+                </div>
+
+                <div class="social-login">
+                    <button type="button" class="social-btn google" data-auth-provider="google" title="Continue with Google">
+                        <i class="fab fa-google"></i>
+                    </button>
+                    <button type="button" class="social-btn github" data-auth-provider="github" title="Continue with GitHub">
+                        <i class="fab fa-github"></i>
+                    </button>
+                    <button type="button" class="social-btn facebook" data-auth-provider="facebook" title="Continue with Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                </div>
+            </form>
         </div>
-        
-        <form action="Campus Shelf.html" class="login-form">
-            <div class="input-group">
-                <i class="fas fa-user"></i>
-                <input type="text" name="username" id="username" placeholder="Username" required>
-                <label for="username">Username</label>
-            </div>
+    </main>
 
-            <div class="input-group">
-                <i class="fas fa-lock"></i>
-                <input type="password" name="password" id="password" placeholder="Password" required>
-                <label for="password">Password</label>
-                <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
-            </div>
+    <div class="modal-backdrop hidden" data-modal-backdrop></div>
 
-            <button type="submit" class="btn-primary">
-                <span>Access Library</span>
-                <i class="fas fa-arrow-right"></i>
-            </button>
-
-            <div class="form-links">
-                <a href="#" class="forgot-password">
-                    <i class="fas fa-key"></i> Forgot Password?
-                </a>
-                <a href="#" class="register-link">
-                    <i class="fas fa-user-plus"></i> Register Now
-                </a>
-            </div>
-
-            <div class="divider">
-                <span>Or continue with</span>
-            </div>
-
-            <div class="social-login">
-                <button type="button" class="social-btn google">
-                    <i class="fab fa-google"></i>
+    <section class="modal hidden" id="registerModal" role="dialog" aria-modal="true" aria-labelledby="registerTitle">
+        <div class="modal-content" data-animate="rise">
+            <header class="modal-header">
+                <div>
+                    <h2 id="registerTitle">Create your Campus Shelf account</h2>
+                    <p class="modal-subtitle">Choose a sign-up method and verify instantly.</p>
+                </div>
+                <button type="button" class="modal-close" aria-label="Close register form" data-modal-close>
+                    <i class="fas fa-times"></i>
                 </button>
-                <button type="button" class="social-btn github">
-                    <i class="fab fa-github"></i>
+            </header>
+
+            <form id="registerForm" class="stack-form" novalidate>
+                <div class="form-alert hidden" role="status" data-register-alert></div>
+
+                <div class="form-field">
+                    <label for="registerName">Full name</label>
+                    <input type="text" id="registerName" name="name" autocomplete="name" placeholder="Jane Doe" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="registerEmail">Academic email</label>
+                    <input type="email" id="registerEmail" name="email" autocomplete="email" placeholder="name@campus.edu" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" name="password" autocomplete="new-password" minlength="8" required>
+                    <small class="helper-text">Use at least 8 characters with a number and a symbol.</small>
+                </div>
+
+                <div class="form-field">
+                    <label for="registerConfirm">Confirm password</label>
+                    <input type="password" id="registerConfirm" name="confirm" autocomplete="new-password" required>
+                </div>
+
+                <fieldset class="option-group">
+                    <legend>Sign-up method</legend>
+                    <label>
+                        <input type="radio" name="provider" value="email" checked>
+                        <span>Email</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="provider" value="google">
+                        <span>Google</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="provider" value="github">
+                        <span>GitHub</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="provider" value="facebook">
+                        <span>Facebook</span>
+                    </label>
+                </fieldset>
+
+                <div class="form-field checkbox">
+                    <input type="checkbox" id="registerTerms" required>
+                    <label for="registerTerms">I agree to the Campus Shelf honor code and privacy policy.</label>
+                </div>
+
+                <button type="submit" class="btn-primary full-width">Create Account</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="modal hidden" id="verificationModal" role="dialog" aria-modal="true" aria-labelledby="verificationTitle">
+        <div class="modal-content" data-animate="rise">
+            <header class="modal-header">
+                <div>
+                    <h2 id="verificationTitle">Verify your account</h2>
+                    <p class="modal-subtitle">Enter the 6-digit code we just generated for you.</p>
+                </div>
+                <button type="button" class="modal-close" aria-label="Close verification" data-modal-close>
+                    <i class="fas fa-times"></i>
                 </button>
-                <button type="button" class="social-btn facebook">
-                    <i class="fab fa-facebook-f"></i>
+            </header>
+
+            <form id="verificationForm" class="stack-form" novalidate>
+                <div class="form-alert hidden" role="status" data-verification-alert></div>
+                <div class="form-field">
+                    <label for="verificationCode">Verification code</label>
+                    <input type="text" id="verificationCode" name="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="Enter 6-digit code" required>
+                </div>
+                <button type="submit" class="btn-primary full-width">Verify Now</button>
+                <p class="helper-text" data-verification-helper></p>
+            </form>
+        </div>
+    </section>
+
+    <section class="modal hidden" id="forgotModal" role="dialog" aria-modal="true" aria-labelledby="forgotTitle">
+        <div class="modal-content" data-animate="rise">
+            <header class="modal-header">
+                <div>
+                    <h2 id="forgotTitle">Reset your password</h2>
+                    <p class="modal-subtitle">We will help you secure access to your shelf again.</p>
+                </div>
+                <button type="button" class="modal-close" aria-label="Close password reset" data-modal-close>
+                    <i class="fas fa-times"></i>
                 </button>
-            </div>
-        </form>
-    </div>
-    
+            </header>
+
+            <form id="forgotForm" class="stack-form" novalidate>
+                <div class="form-alert hidden" role="status" data-forgot-alert></div>
+                <div class="form-field">
+                    <label for="forgotEmail">Registered email</label>
+                    <input type="email" id="forgotEmail" name="email" placeholder="name@campus.edu" autocomplete="email" required>
+                </div>
+                <div class="form-field hidden" data-reset-fields>
+                    <label for="forgotCode">Reset code</label>
+                    <input type="text" id="forgotCode" name="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="Enter 6-digit code">
+                </div>
+                <div class="form-field hidden" data-reset-fields>
+                    <label for="forgotPassword">New password</label>
+                    <input type="password" id="forgotPassword" name="newPassword" minlength="8" autocomplete="new-password">
+                </div>
+                <div class="form-field hidden" data-reset-fields>
+                    <label for="forgotConfirm">Confirm new password</label>
+                    <input type="password" id="forgotConfirm" name="confirmPassword" autocomplete="new-password">
+                </div>
+                <button type="submit" class="btn-primary full-width" data-forgot-action="request">Send Reset Code</button>
+            </form>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
-            <p><i class="fas fa-shield-alt"></i> Secure access for authorized students only</p>
+            <p><i class="fas fa-shield-alt"></i> Secure access for authorized students and faculty</p>
             <p class="copyright">&copy; 2025 Campus Shelf. All rights reserved.</p>
         </div>
     </footer>
-
-    <script>
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const toggleIcon = document.querySelector('.toggle-password');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleIcon.classList.remove('fa-eye');
-                toggleIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                toggleIcon.classList.remove('fa-eye-slash');
-                toggleIcon.classList.add('fa-eye');
-            }
-        }
-
-        // Add floating animation on load
-        document.addEventListener('DOMContentLoaded', () => {
-            const container = document.querySelector('.login-container');
-            container.style.opacity = '0';
-            container.style.transform = 'translateY(30px)';
-            
-            setTimeout(() => {
-                container.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-                container.style.opacity = '1';
-                container.style.transform = 'translateY(0)';
-            }, 100);
-        });
-    </script>
 </body>
 </html>
