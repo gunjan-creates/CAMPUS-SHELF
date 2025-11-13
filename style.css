@@ -678,6 +678,17 @@ html.animations-ready [data-animate="rise"].animated {
         width: 90px;
         height: 90px;
     }
+
+    .provider-preview {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .provider-image {
+        width: 100%;
+        height: auto;
+        border-radius: 14px;
+    }
 }
 
 @media (max-width: 420px) {

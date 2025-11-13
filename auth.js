@@ -24,6 +24,10 @@
     const modalBackdrop = document.querySelector('[data-modal-backdrop]');
     const modals = Array.from(document.querySelectorAll('.modal'));
     const animateNodes = document.querySelectorAll('[data-animate]');
+    const providerPreview = document.querySelector('[data-provider-preview]');
+    const providerImage = document.querySelector('[data-provider-image]');
+    const providerHeading = document.querySelector('[data-provider-heading]');
+    const providerCopy = document.querySelector('[data-provider-copy]');
 
     ensureAdminAccount();
     hydratePendingVerification();
@@ -36,6 +40,7 @@
     wireForgotPassword();
     hydrateResetContext();
     wireSocialProviders();
+    wireProviderPreview();
 
     function enableAnimations() {
         requestAnimationFrame(() => {
@@ -210,6 +215,7 @@
             if (defaultOption) {
                 defaultOption.checked = true;
             }
+            updateProviderPreview('email');
 
             if (provider === 'email') {
                 showAlert(alertBox, 'Account created! Enter the verification code we generated to activate access.', 'success');
@@ -230,6 +236,57 @@
 
     function wireVerification() {
         if (!verificationForm) {
+
+    function wireProviderPreview() {
+        if (!registerForm || !providerPreview) {
+            return;
+        }
+        const radios = registerForm.querySelectorAll('input[name="provider"]');
+        radios.forEach(radio => {
+            radio.addEventListener('change', () => updateProviderPreview(radio.value));
+        });
+        const checked = registerForm.querySelector('input[name="provider"]:checked');
+        updateProviderPreview(checked ? checked.value : 'email');
+    }
+
+    const providerAssets = {
+        email: {
+            heading: 'Campus email access',
+            copy: 'Use your campus inbox for our classic verification with a 6-digit code.',
+            image: 'https://images.unsplash.com/photo-1587613864521-79fef05ae49b?auto=format&fit=crop&w=300&q=60'
+        },
+        google: {
+            heading: 'Google single sign-on',
+            copy: 'Link your Google account for instant access and synced bookmarks.',
+            image: 'https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=300&q=60'
+        },
+        github: {
+            heading: 'GitHub developer setup',
+            copy: 'Perfect for coding clubs—sync repositories and tech reading lists.',
+            image: 'https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=300&q=60'
+        },
+        facebook: {
+            heading: 'Facebook community login',
+            copy: 'Join with your social identity and discover peer-led study circles.',
+            image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=300&q=60'
+        }
+    };
+
+    function updateProviderPreview(provider) {
+        if (!providerPreview) {
+            return;
+        }
+        const asset = providerAssets[provider] || providerAssets.email;
+        if (providerImage) {
+            providerImage.src = asset.image;
+        }
+        if (providerHeading) {
+            providerHeading.textContent = asset.heading;
+        }
+        if (providerCopy) {
+            providerCopy.textContent = asset.copy;
+        }
+    }
             return;
         }
         verificationForm.addEventListener('submit', event => {
