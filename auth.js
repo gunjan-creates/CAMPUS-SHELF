@@ -253,22 +253,22 @@
         email: {
             heading: 'Campus email access',
             copy: 'Use your campus inbox for our classic verification with a 6-digit code.',
-            image: 'https://images.unsplash.com/photo-1587613864521-79fef05ae49b?auto=format&fit=crop&w=300&q=60'
+            image: 'https://img.icons8.com/fluency/160/mail.png'
         },
         google: {
             heading: 'Google single sign-on',
             copy: 'Link your Google account for instant access and synced bookmarks.',
-            image: 'https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=300&q=60'
+            image: 'https://img.icons8.com/color/240/google-logo.png'
         },
         github: {
             heading: 'GitHub developer setup',
             copy: 'Perfect for coding clubs—sync repositories and tech reading lists.',
-            image: 'https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=300&q=60'
+            image: 'https://img.icons8.com/ios-glyphs/240/000000/github.png'
         },
         facebook: {
             heading: 'Facebook community login',
             copy: 'Join with your social identity and discover peer-led study circles.',
-            image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=300&q=60'
+            image: 'https://img.icons8.com/color/240/facebook-new.png'
         }
     };
 
@@ -279,6 +279,7 @@
         const asset = providerAssets[provider] || providerAssets.email;
         if (providerImage) {
             providerImage.src = asset.image;
+            providerImage.alt = `${asset.heading} illustration`;
         }
         if (providerHeading) {
             providerHeading.textContent = asset.heading;

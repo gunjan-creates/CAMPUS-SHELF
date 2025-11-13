@@ -451,14 +451,14 @@ body {
     overflow: hidden;
     display: grid;
     place-items: center;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 8px 20px rgba(102, 126, 234, 0.18);
 }
 
 .provider-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
 }
 
 .provider-copy h3 {
@@ -500,38 +500,26 @@ body {
     transition: all 0.3s ease;
 }
 
+.social-btn img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
 .social-btn:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-.social-btn.google {
-    color: #ea4335;
-}
-
 .social-btn.google:hover {
-    background: #ea4335;
-    color: white;
     border-color: #ea4335;
 }
 
-.social-btn.github {
-    color: #333;
-}
-
 .social-btn.github:hover {
-    background: #333;
-    color: white;
     border-color: #333;
 }
 
-.social-btn.facebook {
-    color: #1877f2;
-}
-
 .social-btn.facebook:hover {
-    background: #1877f2;
-    color: white;
     border-color: #1877f2;
 }
 
