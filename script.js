@@ -427,7 +427,7 @@
     }
 
     function openAdminModal() {
-+        adminBackdrop?.classList.add('active');
+        adminBackdrop?.classList.add('active');
         adminModal?.classList.remove('hidden');
     }
 
