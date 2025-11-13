@@ -32,6 +32,7 @@
     wireRegister();
     wireVerification();
     wireForgotPassword();
+    hydrateResetContext();
     wireSocialProviders();
 
     function enableAnimations() {
@@ -203,7 +204,10 @@
             saveUsers(users);
 
             registerForm.reset();
-            registerForm.querySelector('input[value="email"]')?.setAttribute('checked', 'checked');
+            const defaultOption = registerForm.querySelector('input[value="email"]');
+            if (defaultOption) {
+                defaultOption.checked = true;
+            }
 
             if (provider === 'email') {
                 showAlert(alertBox, 'Account created! Enter the verification code we generated to activate access.', 'success');
@@ -579,9 +583,52 @@
         localStorage.setItem(RESET_KEY, JSON.stringify(context));
     }
 
+    function hydrateResetContext() {
+        if (!forgotForm) {
+            return;
+        }
+        const raw = localStorage.getItem(RESET_KEY);
+        if (!raw) {
+            return;
+        }
+        try {
+            const parsed = JSON.parse(raw);
+            if (!parsed?.email || !parsed?.code) {
+                clearResetContext();
+                return;
+            }
+            if (parsed.expiresAt && Date.now() > parsed.expiresAt) {
+                clearResetContext();
+                return;
+            }
+            state.resetContext = parsed;
+            forgotForm.email.value = parsed.email;
+            revealResetFields(true);
+            const submitBtn = forgotForm.querySelector('[data-forgot-action]');
+            if (submitBtn) {
+                submitBtn.textContent = 'Update Password';
+                submitBtn.setAttribute('data-forgot-action', 'reset');
+            }
+            const alertBox = forgotForm.querySelector('[data-forgot-alert]');
+            showAlert(alertBox, `Reset code ${parsed.code} is active. Enter it to set a new password.`, 'info');
+        } catch (error) {
+            console.error('Failed to hydrate reset context', error);
+            clearResetContext();
+        }
+    }
+
     function clearResetContext() {
         state.resetContext = null;
         localStorage.removeItem(RESET_KEY);
+        if (!forgotForm) {
+            return;
+        }
+        revealResetFields(false);
+        const submitBtn = forgotForm.querySelector('[data-forgot-action]');
+        if (submitBtn) {
+            submitBtn.textContent = 'Send Reset Code';
+            submitBtn.setAttribute('data-forgot-action', 'request');
+        }
     }
 
     function refreshVerificationCode(user, users) {
