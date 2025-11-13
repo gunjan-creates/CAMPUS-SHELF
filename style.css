@@ -607,13 +607,18 @@ footer {
 }
 
 /* Micro animations */
-[data-animate="rise"] {
+[data-animate] {
+    opacity: 1;
+    transform: none;
+}
+
+html.animations-ready [data-animate="rise"] {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-[data-animate="rise"].animated {
+html.animations-ready [data-animate="rise"].animated {
     opacity: 1;
     transform: translateY(0);
 }

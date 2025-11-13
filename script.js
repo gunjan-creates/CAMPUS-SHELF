@@ -11,6 +11,8 @@
         return;
     }
 
+    document.documentElement.classList.add('animations-ready');
+
     const bookCards = Array.from(document.querySelectorAll('.book-card'));
     const filterChips = Array.from(document.querySelectorAll('.chip'));
     const searchInput = document.getElementById('searchInput');
@@ -449,6 +451,11 @@
         if (!animatedNodes.length) {
             return;
         }
+        if (typeof IntersectionObserver === 'undefined') {
+            animatedNodes.forEach(node => node.classList.add('animated'));
+            return;
+        }
+
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {

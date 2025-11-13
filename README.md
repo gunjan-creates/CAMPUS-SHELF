@@ -23,6 +23,20 @@ Campus Shelf is a fully animated campus library experience that blends a modern 
 4. Use the search bar, category chips, and navigation links to explore the animated sections.
 5. Unlock the admin dashboard with the admin password above. The default admin account (`admin@campus-shelf.com`) is provisioned automatically.
 
+## Usage Guide
+- **Registration & verification:** Submit the register form, copy the displayed 6-digit code, and confirm it inside the verification modal to activate your account.
+- **Social sign-in:** Click any provider button to spawn a fully verified demo profile—perfect for quick previews.
+- **Password management:** Use the forgot password flow to request a reset token, then set a new password in the follow-up modal.
+- **Session handling:** Successful sign-in stores a session in `sessionStorage`; logging out clears it and redirects back to the login portal.
+- **Admin unlock:** Open the admin access modal from the dashboard, enter `CampusShelf@Admin2025`, and the guard view swaps to the metrics/table console.
+- **Content exploration:** Search trims the featured grid in real time, while category chips filter by genre with smooth card animations.
+- **Engagement widgets:** The contact form thanks the sender inline and the newsletter button provides instant feedback without page reloads.
+
+## Animations & UX Highlights
+- Elements with `[data-animate]` fade and rise into view via an IntersectionObserver-powered reveal system.
+- Cards, buttons, and navigation affordances use subtle transforms and shadow transitions to communicate state changes.
+- Mobile navigation collapses into a toggle-driven drawer that inherits the same animated styling for consistency.
+
 ## Project Structure
 - `index.html` / `style.css` — authentication portal and modal flows
 - `Campus Shelf.html` / `Campus Shelf.css` — library experience, animations, and admin console

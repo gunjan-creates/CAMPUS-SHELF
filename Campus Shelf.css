@@ -877,12 +877,17 @@ main {
 
 /* Animation support */
 [data-animate] {
+    opacity: 1;
+    transform: none;
+}
+
+html.animations-ready [data-animate] {
     opacity: 0;
     transform: translateY(25px);
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-[data-animate].animated {
+html.animations-ready [data-animate].animated {
     opacity: 1;
     transform: translateY(0);
 }

@@ -1,6 +1,8 @@
 (() => {
     'use strict';
 
+    document.documentElement.classList.add('animations-ready');
+
     const STORAGE_KEY = 'campusShelfUsers';
     const SESSION_KEY = 'campusShelfSession';
     const PENDING_KEY = 'campusShelfPendingVerification';
